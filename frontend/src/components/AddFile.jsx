@@ -5,7 +5,8 @@ import Axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import { Paper, TextField, Button, Grid, Typography } from '@material-ui/core';
 
-const URI = "http://localhost:5000";
+// const URI = "http://localhost:5000";
+const URI = "https://react-read-write-json.herokuapp.com";
 
 const useStyles = makeStyles((theme) => ({
     paper: {

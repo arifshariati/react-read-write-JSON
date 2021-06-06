@@ -23,7 +23,8 @@ import {
 } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-const URI = "http://localhost:5000";
+// const URI = "http://localhost:5000";
+const URI = "https://react-read-write-json.herokuapp.com";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
