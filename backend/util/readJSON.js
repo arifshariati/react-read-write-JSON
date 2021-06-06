@@ -1,21 +1,3 @@
-# react-read-write-JSON
-
-Times in come in handdy in react Js applications where configuration setting from react js front end components needs to be persistent with json files rather persistent with database like mongo to reduce number of transactions.
-
-However, react js directly can not handle file system functionaly, for which Node js express comes in handy, where simple route for reading and wrting json files and do the job.
-
-## Folder structure
-for this sake of this example, we have kept out setting folder outside our backend project;
-
-```
-const default_path = `${path.join(__dirname, '../../setting')}/`;
-```
-
-## Module - reading and wrting JSON files
-
-This is the core module for reading and writing JSON files in setting folder. 
-
-```
 const fs = require('fs');
 const path = require('path');
 
@@ -58,14 +40,3 @@ module.exports = {
         
     }
 };
-```
-
-## How to use ?
-
-clone project in your local machine, and get started checking out functionalities;
-
-```
-npm start
-```
-
-Cheers!
