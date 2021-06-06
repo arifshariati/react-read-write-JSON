@@ -7,6 +7,36 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get('/getfiles', async (req, res) => {
+    rw.readDir(null,(err, files) => {
+        if(err){
+            res.status(400).send({
+                data:{},
+                error:{
+                    "error":"Faulty Folder"
+                }
+            });
+        }
+        res.status(200).send({
+            data:files,
+            error:{}
+        });
+    });
+});
+app.post('/removefile/:fileName', async (req, res) => {
+
+    const fileName = req.params.fileName;
+    if( await rw.removeFile(fileName)){
+
+        res.status(200).send({
+            msg:"file successfully removed"
+        });
+    }else{
+        res.status(400).send({
+            msg:"file could not be removed"
+        });
+    }
+});
 app.get('/readJSON/:fileName', async (req,res) => {
 
     const fileName = req.params.fileName;
