@@ -4,6 +4,7 @@ Times in come in handdy in react Js applications where configuration setting fro
 
 However, react js directly can not handle file system functionaly, for which Node js express comes in handy, where simple route for reading and wrting json files and do the job.
 
+[Checkout DEMO](https://react-read-write-json.netlify.app/)
 ## Folder structure
 for this sake of this example, we have kept out setting folder outside our backend project;
 

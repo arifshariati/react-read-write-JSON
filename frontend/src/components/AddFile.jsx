@@ -8,6 +8,7 @@ import { Paper, TextField, Button, Grid, Typography } from '@material-ui/core';
 // const URI = "http://localhost:5000";
 const URI = "https://react-read-write-json.herokuapp.com";
 
+
 const useStyles = makeStyles((theme) => ({
     paper: {
         display: 'flex', 
@@ -31,7 +32,7 @@ const AddFile = () => {
             name,
             surname
         };
-        Axios.post(`${URI}/writeJSON/${fileName}.json`,data)
+        Axios.post(`${URI}/writeJSON/${fileName}.json`,{ crossdomain: true },data)
             .then((res) => {
                 if(res.status === 400){
                     console.log('Error');

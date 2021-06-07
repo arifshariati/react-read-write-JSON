@@ -3,12 +3,31 @@ const path = require('path');
 
 const default_path = `${path.join(__dirname, '../../setting')}/`;
 
+// for heroku - since heroku does not allow folder creation outside root folder
+// const default_path = `${path.join(__dirname, '../setting')}/`;
+
 module.exports = {
 
+    makeDir: (err, cb) => {
+        fs.mkdir(default_path, (err) => {
+            if(err){
+                return cb && cb(err);
+            }
+            return cb && cb(null);
+        })
+    },
     readDir: (err, cb) => {
         fs.readdir(default_path, (err, files) => {
             if (err) {
-                return cb && cb(err);
+                fs.mkdir(default_path,(err) => {
+                    if(err){
+                        return cb && cb(err);
+                    }
+                    return;
+                    // return cb && cb(null, files);
+                });
+                
+                // return cb && cb(err);
             }
             return cb && cb(null, files);
         });

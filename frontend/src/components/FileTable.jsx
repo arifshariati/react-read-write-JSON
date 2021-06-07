@@ -56,7 +56,7 @@ const FileTable = () => {
     const [fileData, setFileData] = useState({});
 
     useEffect(() => {
-        Axios.get(`${URI}/getfiles`)
+        Axios.get(`${URI}/getfiles`,{ crossdomain: true })
         .then(res => {
             let list = res.data.data;
             setFiles(list);
@@ -71,7 +71,7 @@ const FileTable = () => {
 
     useEffect(() => {
 
-        Axios.get(`${URI}/readJSON/${selectedFile}`)
+        Axios.get(`${URI}/readJSON/${selectedFile}`,{ crossdomain: true })
         .then(res => {
             let data = res.data.data;
             setFileData(data);
@@ -83,7 +83,7 @@ const FileTable = () => {
     },[selectedFile]);
 
     const deleteFile = () => {
-        Axios.post(`${URI}/removefile/${selectedFile}`)
+        Axios.post(`${URI}/removefile/${selectedFile}`,{ crossdomain: true })
         .then(res => {
             setSelectedFile("");
             if(selectedFile === "" && files.length >0){

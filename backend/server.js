@@ -12,59 +12,65 @@ app.use(cors(
 ));
 app.use(express.json());
 
+app.get("/", (req, res) => {
+    return res.status(200).send({
+        msg:"You Have reached to default route. Means backend is working!"
+    });
+});
 app.get('/getfiles', async (req, res) => {
-    rw.readDir(null,(err, files) => {
+    
+    return rw.readDir(null,(err, files) => {
         if(err){
-            res.status(400).send({
+            return res.status(400).send({
                 data:{},
                 error:{
                     "error":"Faulty Folder"
                 }
             });
         }
-        res.status(200).send({
+        return res.status(200).send({
             data:files,
             error:{}
         });
     });
 });
 app.post('/removefile/:fileName', async (req, res) => {
-
+    
     const fileName = req.params.fileName;
     if( await rw.removeFile(fileName)){
 
-        res.status(200).send({
+        return res.status(200).send({
             msg:"file successfully removed"
         });
     }else{
-        res.status(400).send({
+        return res.status(400).send({
             msg:"file could not be removed"
         });
     }
 });
 app.get('/readJSON/:fileName', async (req,res) => {
-
+    
     const fileName = req.params.fileName;
     
     if( await rw.fileExists(fileName)){
 
         rw.readJSON(fileName,(err,file) => {
             if(err){
-                res.status(400).send({
+                return res.status(400).send({
                     data:{},
                     error:{
                         "error":`${fileName} does not exist`
                     }
                 });
             }
-            res.status(200).send({
+            return res.status(200).send({
                 data:file,
                 error:{}
             });
         });
 
     }else{
-        res.status(400).send({
+        return res.status(400).send({
             data:{},
             error:{
                 "error":`${fileName} does not exist`
@@ -75,7 +81,7 @@ app.get('/readJSON/:fileName', async (req,res) => {
 });
 
 app.post('/writeJSON/:fileName', async (req,res) => {
-
+    
     const fileName = req.params.fileName;
     const data = req.body;
 
